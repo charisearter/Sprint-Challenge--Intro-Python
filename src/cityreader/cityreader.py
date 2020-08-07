@@ -24,18 +24,26 @@ class City:
 # should not be loaded into a City object.
 cities = []
 
+# with open('cities.csv', newline='') as csvfile:
+#     csvreader = csv.reader(csvfile)
+#     # skip header row
+#     next(csvreader)
+#     for row in csvreader:
+#         cities.append(row)
+
 
 def cityreader(cities=[]):
     # TODO Implement the functionality to read from the 'cities.csv' file
     # Ensure that the lat and lon valuse are all floats
     # For each city record, create a new City instance and add it to the
     # `cities` list
-    with open('cities.csv', 'r') as csvfile:
+    with open('cities.csv', newline='') as csvfile:
         csvreader = csv.reader(csvfile)
         # skip header row
         next(csvreader)
         for row in csvreader:
-            cities.append(row)
+            row_city = City(row[0], float(row[3]), float(row[4]))
+            cities.append(row_city)
 
     return cities
 
@@ -44,7 +52,8 @@ cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
+
+    print(f'{c.name} {c.lat} {c.lon} ')
 
 # STRETCH GOAL!
 #
