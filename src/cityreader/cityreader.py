@@ -1,5 +1,7 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+import csv
+
 
 class City:
     def __init__(self, name, lat, lon):
@@ -28,6 +30,12 @@ def cityreader(cities=[]):
     # Ensure that the lat and lon valuse are all floats
     # For each city record, create a new City instance and add it to the
     # `cities` list
+    with open('cities.csv', 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+        # skip header row
+        next(csvreader)
+        for row in csvreader:
+            cities.append(row)
 
     return cities
 
